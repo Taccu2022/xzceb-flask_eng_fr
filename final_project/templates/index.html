@@ -1,4 +1,45 @@
+<!DOCTYPE html>
 <html>
+<head>
+    <title>Translation App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1>Translation App</h1>
+
+        <h2>English to French</h2>
+        <form action="/englishToFrench" method="POST">
+            <div class="form-group">
+                <label for="englishText">Text to be translated</label>
+                <input type="text" class="form-control" id="englishText" name="englishText" rows="3" placeholder="Enter English text">
+            </div>
+            <button type="submit" class="btn btn-secondary">Translate</button>
+        </form>
+
+        <h2>French to English</h2>
+        <form action="/frenchToEnglish" method="POST">
+            <div class="form-group">
+                <label for="frenchText">Text to be translated</label>
+                <input type="text" class="form-control" id="frenchText" name="frenchText" rows="3" placeholder="Enter French text">
+            </div>
+            <button type="submit" class="btn btn-secondary">Translate</button>
+        </form>
+
+        <h2>Translated Text:</h2>
+        <!-- <textarea class="form-control" value={{ translated_text }} rows="3" placeholder="translated text will be shown here"></textarea> -->
+        <p id="translatedText" style="color: green;">{{ translated_text }}</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/mywebscript.js"></script>
+</body>
+</html>
+
+
+
+
+<!-- <html>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="./static/mywebscript.js"></script>
     <div class="card">
@@ -16,4 +57,4 @@
         <div id="translated_text" style="padding: 25px 25px 25px 25px;"></div>
         </div>
   </div>
-</html>
+</html> -->

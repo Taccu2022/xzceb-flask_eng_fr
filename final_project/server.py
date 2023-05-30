@@ -1,35 +1,27 @@
 from machinetranslation.translator import english_to_french, french_to_english
-from flask import Flask, render_template, request
-import json
+from flask import Flask, render_template, request, redirect
 
-app = Flask("Web Translator")
+app = Flask(__name__)
 
-@app.route('/englishToFrench', methods=['POST'])
+@app.route('/')
+def renderIndexPage():
+    return render_template('index.html', translated_text='')
+
+@app.route('/englishToFrench', methods=['GET', 'POST'])
 def translate_english_to_french():
-    # Get the English text from the request
-    english_text = request.form['englishText']
-    
-    # Translate English to French using the translation function
-    french_text = english_to_french(english_text)
-    
-    # Return the translated French text as a response
-    return french_text
+    if request.method == 'POST':
+        english_text = request.form['englishText']
+        french_text = english_to_french(english_text)
+        return render_template('index.html', translated_text=french_text)
+    else:
+        # Handle the GET request by redirecting to the home page or returning an error message
+        return redirect('/')
 
 @app.route('/frenchToEnglish', methods=['POST'])
 def translate_french_to_english():
-    # Get the French text from the request
     french_text = request.form['frenchText']
-    
-    # Translate French to English using the translation function
     english_text = french_to_english(french_text)
-    
-    # Return the translated English text as a response
-    return english_text
+    return render_template('index.html', translated_text=english_text)
 
-@app.route("/")
-def renderIndexPage():
-    # Write the code to render template
-    return render_template('index.html')
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)
